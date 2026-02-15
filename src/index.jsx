@@ -12,7 +12,7 @@ import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
 
 import Head from './components/Head/Head';
 import { DiscussionsHome } from './discussions';
-import messages from './i18n';
+//import messages from './i18n';
 import store from './store';
 
 import './index.scss';
