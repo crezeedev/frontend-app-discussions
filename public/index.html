@@ -183,4 +183,181 @@
     </script>
     <!-- end usabilla live embed code -->
   </body>
+    <!-- estilos para ocultar botones -->
+<style>
+    /* Oculta los contenedores de My Courses y Discover en el header del curso */
+    .course-title-lockup .nav-course {
+        display: none !important;
+    }
+
+    /*Oculta el boton de Discover solo en este MFE*/
+    .pgn__dropdown.user-dropdown.show
+      .dropdown-menu-right.dropdown-menu.show
+      a.dropdown-item[href*="/courses"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+<!-- modificar footer y bontes de ayuda -->
+<script>
+  //boton ayuda
+(function () {
+  const NEW_URL = "https://onlinelive.universidadriviera.edu.mx/contact";
+  const NEW_TEXT = "Ayuda";
+
+  function fixAyudaLink() {
+    const links = document.querySelectorAll('a.text-gray-700.ml-2');
+
+    for (const link of links) {
+      const rawHref = link.getAttribute("href");
+
+      if (rawHref === "null" || rawHref === "" || rawHref === null) {
+        link.setAttribute("href", NEW_URL);
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener noreferrer");
+	link.textContent = NEW_TEXT;
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+  // Intento inmediato
+  if (fixAyudaLink()) return;
+
+  // Observa cambios del DOM (React)
+  const observer = new MutationObserver(() => {
+    if (fixAyudaLink()) observer.disconnect();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
+//footer
+(function () {
+  function translateAndClean() {
+
+  
+    // 2. Traducir Copyrights con una técnica de reemplazo total
+    const copyright = document.querySelector('.copyright-site');
+    if (copyright && copyright.textContent.includes('All Rights Reserved')) {
+      // Usamos innerHTML para forzar el cambio y reemplazamos las dos partes
+      let text = copyright.innerHTML;
+      text = text.replace('Copyrights', 'Derechos de autor');
+      text = text.replace('All Rights Reserved', 'Todos los derechos reservados');
+      copyright.innerHTML = text;
+    }
+
+    const postDiscuss = document.querySelector('.font-style');
+    if(postDiscuss && postDiscuss.textContent.includes('All  posts  sorted by recent activity')){
+      // Usamos innerHTML para forzar el cambio y reemplazamos las dos partes
+      let textDiscuss = postDiscuss.innerHTML;
+      textDiscuss = textDiscuss.replace('All  posts  sorted by recent activity', 'Todas las publicaciones ordenadas por actividad reciente');
+      postDiscuss.innerHTML = textDiscuss;
+    }
+  }
+
+  // Ejecución inicial con un pequeño retraso para asegurar que el footer cargó
+  setTimeout(translateAndClean, 500);
+
+  // Observador para cambios del DOM
+  const observer = new MutationObserver((mutations) => {
+    // Solo ejecutamos si hay cambios reales para evitar bucles infinitos
+    translateAndClean();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+})();
+
+
+//=====================menu learning==========================
+(function () {
+
+  function translateMenu() {
+
+    const translations = {
+      "My Courses": "Mis cursos",
+      "Discover": "Explorar",
+      "Dashboard": "Panel",
+      "Profile": "Perfil",
+      "Account": "Cuenta",
+      "Sign Out": "Cerrar sesión"
+    };
+
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+    dropdownItems.forEach(item => {
+      const text = item.textContent.trim();
+      if (translations[text]) {
+        item.textContent = translations[text];
+      }
+    });
+  }
+
+  setTimeout(translateMenu, 500);
+
+  const observer = new MutationObserver(() => {
+    translateMenu();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+})();
+
+</script>
+
+<!-- powered by -->
+<script>
+(function () {
+
+  function customizeFooterLogos() {
+
+    // Cambiar texto "Powered by"
+    const poweredByItems = document.querySelectorAll('.logo-list li');
+
+    poweredByItems.forEach(li => {
+      if (li.textContent.trim() === "Powered by") {
+        li.textContent = "Desarrollado por";
+      }
+    });
+
+    // Cambiar logo de Open edX por logo-crezee.png
+    const logos = document.querySelectorAll('.logo-list img');
+
+    logos.forEach(img => {
+      if (img.src.includes("tutor-logo")) {
+        img.src = "https://onlinelive.universidadriviera.edu.mx/theming/asset/images/logo-crezee.png";
+        img.alt = "Crezee";
+        img.width = 120;
+      }
+    });
+
+  }
+
+  // Ejecutar después de cargar
+  setTimeout(customizeFooterLogos, 800);
+
+  // Observar cambios (porque es React/MFE)
+  const observer = new MutationObserver(() => {
+    customizeFooterLogos();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+})();
+</script>
 </html>

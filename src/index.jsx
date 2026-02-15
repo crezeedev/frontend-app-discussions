@@ -16,7 +16,11 @@ import messages from './i18n';
 import store from './store';
 
 import './index.scss';
+import messagesEs419 from './es_419.json';
 
+const messages = {
+  'es-419': messagesEs419,  // <--- AGREGAR ESTO
+};
 subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider store={store}>
@@ -43,4 +47,6 @@ initialize({
       }, 'DiscussionsConfig');
     },
   },
+  messages: messages,
+  locale: 'es-419', 
 });

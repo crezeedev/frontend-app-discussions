@@ -7,7 +7,7 @@ const messages = defineMessages({
   },
   searchAllPosts: {
     id: 'discussions.posts.actionBar.searchAllPosts',
-    defaultMessage: 'Search all posts',
+    defaultMessage: 'Buscar todas las publicaciones',
     description: 'Placeholder text in search box',
   },
   search: {

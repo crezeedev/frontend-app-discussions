@@ -13,7 +13,17 @@ import './navBar.scss';
 const CourseTabsNavigation = () => {
   const intl = useIntl();
   const tabs = useSelector(state => state.courseTabs.tabs);
+  const TAB_TRANSLATIONS = {
+    'Course': 'Curso',
+    'Progress': 'Progreso',
+    'Dates': 'Fechas',
+    'Discussion': 'Discusión',
+    'Instructor': 'Instructor',
+    'Resources': 'Recursos',
+    'Notes': 'Notas',
+  };
 
+  const translateTab = (text) => TAB_TRANSLATIONS[text] || text;
   return (
     <div id="courseTabsNavigation" className="course-tabs-navigation px-4 bg-white">
       {!!tabs.length && (
@@ -27,7 +37,7 @@ const CourseTabsNavigation = () => {
               className={classNames('nav-item flex-shrink-0 nav-link', { active: slug === 'discussion' })}
               href={url}
             >
-              {title}
+              {translateTab(title)}
             </a>
           ))}
         </Tabs>
