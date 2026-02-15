@@ -132,7 +132,7 @@ describe('Learner Posts View', () => {
     await renderComponent();
 
     const filterBar = container.querySelector('.filter-bar');
-    const recentActivity = screen.getByText('All posts sorted by recent activity');
+    const recentActivity = screen.getByText('Todas las publicaciones ordenadas por actividad reciente');
 
     expect(filterBar).toBeInTheDocument();
     expect(recentActivity).toBeInTheDocument();
