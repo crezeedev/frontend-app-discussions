@@ -89,32 +89,32 @@ const messages = defineMessages({
   sortFilterStatus: {
     id: 'discussions.posts.sort-filter.sortFilterStatus',
     defaultMessage: `{own, select,
-      false {All}
-      true {Own}
-      other {{own}}
-    } {status, select,
-      statusAll {}
-      statusUnread {unread}
-      statusFollowing {followed}
-      statusReported {reported}
-      statusUnanswered {unanswered}
-      statusUnresponded {unresponded}
-      other {{status}}
-    } {type, select,
-      discussion {discussions}
-      question {questions}
-      all {posts}
-      other {{type}}
-    } {cohortType, select,
-        all {}
-        group {in {cohort}}
-        other {{cohortType}}
-    } sorted by {sort, select,
-      lastActivityAt {recent activity}
-      commentCount {most activity}
-      voteCount {most likes}
-      other {{sort}}
-    }`,
+        false {Todas}
+        true {Propias}
+        other {{own}}
+      } {status, select,
+        statusAll {}
+        statusUnread {no leídas}
+        statusFollowing {seguidas}
+        statusReported {reportadas}
+        statusUnanswered {sin respuesta}
+        statusUnresponded {sin comentarios}
+        other {{status}}
+      } {type, select,
+        discussion {discusiones}
+        question {preguntas}
+        all {publicaciones}
+        other {{type}}
+      } {cohortType, select,
+          all {}
+          group {en {cohort}}
+          other {{cohortType}}
+      } ordenadas por {sort, select,
+        lastActivityAt {actividad reciente}
+        commentCount {más actividad}
+        voteCount {más votos}
+        other {{sort}}
+      }`,
     description: 'Status message showing current sorting and filtering status',
   },
 });
