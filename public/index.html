@@ -263,7 +263,9 @@
   }
 
   // Ejecución inicial con un pequeño retraso para asegurar que el footer cargó
-  setTimeout(translateAndClean, 500);
+  document.addEventListener("DOMContentLoaded", () => {
+    translateMenu();
+  });
 
   // Observador para cambios del DOM
   const observer = new MutationObserver((mutations) => {
